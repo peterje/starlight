@@ -8,6 +8,8 @@
       <v-row justify="center">
         <v-col cols="6" class="pb-10" align-self="center">
           <v-form ref="form" v-model="formValid">
+            <v-subtitle>General Info</v-subtitle>
+            <v-divider ></v-divider>
             <v-text-field v-model="firstName" required label="First Name" :rules="nameRules"> </v-text-field>
             <v-text-field v-model="lastName" required label="Last Name" :rules="nameRules"> </v-text-field>
             <v-text-field
@@ -19,13 +21,15 @@
             > </v-text-field>
             <v-text-field v-model="address1" required label="Address 1"> </v-text-field>
             <v-text-field v-model="address2" label="Address 2"> </v-text-field>
-            <div class="d-flex justify-space-between">
+            <div class="d-flex justify-space-between mb-4">
               <v-text-field v-model="city" required label="City"> </v-text-field>
               <v-spacer/>
               <v-text-field v-model="state" required label="State"> </v-text-field>
               <v-spacer/>
               <v-text-field v-model="zipCode" required label="Postal Code"> </v-text-field>
             </div>
+            <v-subtitle>Event Info</v-subtitle>
+            <v-divider ></v-divider>
             <div class="d-flex justify-space-between">
               <v-dialog
                 ref="date"
@@ -124,8 +128,8 @@
             ></v-select>
             <v-textarea shaped outlined label="Special Requests"></v-textarea>
             <v-text-field label="Promo Code"> </v-text-field>
-            <h1 class="display-1">Event estimate: ${{ price }}</h1>
-            <v-btn color="surface" @click="submitForm" >Request</v-btn>
+            <h1 class="display-1 my-4">Event estimate: ${{ price }}</h1>
+            <v-btn color="surface" x-large @click="submitForm" >Request</v-btn>
           </v-form>
           <v-dialog v-model="successModal" width="500">
             <v-sheet class="pa-5 flex-column">
