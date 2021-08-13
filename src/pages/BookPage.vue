@@ -121,6 +121,7 @@
               label="Service"
             ></v-select>
             <v-select
+              v-if="selectedItem === 'Princess Party'"
               v-model="selectedPerformers"
               :items="numPerformers"
               filled
@@ -128,8 +129,10 @@
             ></v-select>
             <v-textarea shaped outlined label="Special Requests"></v-textarea>
             <v-text-field label="Promo Code"> </v-text-field>
-            <h1 class="display-1 my-4">Event estimate: ${{ price }}</h1>
+            <h1 v-if="selectedItem !== 'Public Event' " class="display-1 my-4">Event estimate: ${{ price }}</h1>
+            <h1 v-else class="display-1 my-4">Request booking for estimate</h1>
             <v-btn color="surface" x-large @click="submitForm" >Request</v-btn>
+            <div class="subtitle-1 font-weight-light">Requesting a booking does not require payment</div>
           </v-form>
           <v-dialog v-model="successModal" width="500">
             <v-sheet class="pa-5 flex-column">
@@ -151,6 +154,7 @@
 </template>
 
 <script type="ts">
+import firebase from "firebase";
 export default {
   name: 'BookPage',
   components: {
@@ -175,7 +179,7 @@ export default {
       modal2: false,
       valid: false,
       firstname: '',
-      items: ['Princess Party', 'Video Call', 'Other'],
+      items: ['Princess Party', 'Public Event' ],
       numPerformers: [1,2,3],
       lastname: '',
       formValid: true,
@@ -203,6 +207,10 @@ export default {
     price: function () {
       if (this.selectedItem === 'Princess Party') {
         return 150 + this.selectedPerformers * 100
+      }else if(this.selectedItem === "Magic Mirror Call"){
+        return 30
+      }else if(this.selectedItem === "Magical Message"){
+        return 10
       }
 
       return 0
@@ -216,7 +224,15 @@ export default {
       if (isValid) {
         this.successModal = true
       }
-    }
+    },
+      submit: function() {
+        const newPostKey = firebase.database().ref().child('messages').push().key;
+        const updates = {}
+        updates['/messages/' + newPostKey ] = {
+          first: this.firstName,
+        };
+        return firebase.database().ref().update(updates);
+      }
   }
   // TODO: Beautify the quote price
   // Add some text to the submit dialog

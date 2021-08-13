@@ -36,6 +36,18 @@ Vue.config.productionTip = false
 | https://vuejs.org/v2/guide/instance.html
 |
 */
+import firebase from "firebase";
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDViPxwogRgPjtWNb52kzuTbDENC4Lku6Y",
+  authDomain: "starlight-c1dff.firebaseapp.com",
+  projectId: "starlight-c1dff",
+  storageBucket: "starlight-c1dff.appspot.com",
+  messagingSenderId: "548899986970",
+  appId: "1:548899986970:web:03ae04c4b4076ef5d07ba3",
+  measurementId: "G-5RRCGYCH1P"
+};
+firebase.initializeApp(firebaseConfig);
 export default new Vue({
   vuetify,
   router,

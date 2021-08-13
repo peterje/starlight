@@ -30,15 +30,15 @@
       <v-container class="py-0 px-0 px-sm-2 d-flex outer-wrapper">
         <div class="left inner-wrapper nav-edge justify-center">
           <div class="d-flex align-center">
-            <v-btn fab class="surface elevation-0 ma-2 hidden-md-and-down" >
-              <v-icon x-large >mdi-facebook</v-icon>
+            <v-btn fab class="surface elevation-0 ma-2 hidden-md-and-down" href="https://www.facebook.com/pg/starlightstudiony" >
+              <v-icon x-large  >mdi-facebook</v-icon>
             </v-btn>
-            <v-btn fab class="surface elevation-0 ma-2 hidden-md-and-down" >
+            <v-btn fab class="surface elevation-0 ma-2 hidden-md-and-down" href="https://www.instagram.com/starlightstudiony/">
               <v-icon x-large >mdi-instagram</v-icon>
             </v-btn>
-            <v-btn fab class="surface elevation-0 ma-2 hidden-md-and-down" >
-              <v-icon x-large >mdi-google-plus</v-icon>
-            </v-btn>
+<!--            <v-btn fab class="surface elevation-0 ma-2 hidden-md-and-down" >-->
+<!--              <v-icon x-large >mdi-google-plus</v-icon>-->
+<!--            </v-btn>-->
           </div>
         </div>
         <div class="center inner-wrapper">

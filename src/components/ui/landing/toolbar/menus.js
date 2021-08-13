@@ -23,10 +23,10 @@ export const NavBar = [{
   links: [{ title: 'single', to: '/story' }]
 },{
   title: 'Services',
-  links: [{ title: 'Party', to: '/party' }, { title: 'Event', to: '/event' }, { title: 'Home', to: '/atHome' }]
+  links: [{ title: 'Party', to: '/party' }, { title: 'Public Event', to: '/events' }]
 },{
-  title: 'Cast',
-  links: [{ title:  'single', to:'/cast' }]
+  title: 'Casting',
+  links: [{ title:  'single', to:'/casting' }]
 }
 ]
 

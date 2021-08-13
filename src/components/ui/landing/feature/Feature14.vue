@@ -2,9 +2,8 @@
   <v-sheet class="white mt-10 elevation-3">
     <div class="d-flex flex-column flex-md-row">
       <div class="w-full w-md-half d-flex align-center">
-        <div class="pa-6 pa-md-12">
-          <h2 class="text-h3 text-lg-h2">Celebrate like <span class="text--white text--lighten-5">Royalty</span></h2>
-
+        <div class="pa-6 pa-md-12 ">
+          <h2 class="display-2 primary--text">Celebrate like <span class="text--accent text--lighten-5">Royalty</span></h2>
           <div class="text-lg-h5 mt-4">Starlight Studio specializes in creating magical experiences for children and families in the Hudson Valley community by bringing favorite childhood fairytales to life. </div>
           <div class="text-lg-h5 mt-4">Character performers with extensive performing arts and early childhood knowledge and training, create magical memories through meaningful interactions and activities for young children.</div>
           <div class="text-lg-h5 mt-4">You can experience the magic of Starlight Studio through one of our Princess Party experiences for you next celebration, attending one of our community events, or virtually with a recorded message from a favorite princess for a loved one.</div>

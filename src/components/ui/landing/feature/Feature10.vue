@@ -1,6 +1,11 @@
 <template>
   <v-sheet color="transparent">
     <v-container class="py-4 py-lg-8">
+      <v-responsive max-width="1200" class="mx-auto text-center mb-4">
+        <h2 class="text-h3 text-lg-h2 ">The Party Experience</h2>
+        <div style="width: 80px; height: 4px" class="my-4 secondary mx-auto" />
+        <div class="text-h6 text-lg-h5">All princess parties include these magical elements!</div>
+      </v-responsive>
       <v-row>
         <v-col
           v-for="(item, i) in features"
@@ -30,7 +35,7 @@ export default {
     return {
       features: [{
         icon: 'fa-heart',
-        title: 'Personal Guests',
+        title: 'Photos & Autographs',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse expedita fugit quam aliquam. Autem assumenda'
       }, {
         icon: 'fa-book-reader',
@@ -46,7 +51,7 @@ export default {
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse expedita fugit quam aliquam. Autem assumenda'
       }, {
         icon: 'fa-paint-brush',
-        title: 'Arts & Crafts',
+        title: 'Pixie Dust Wish',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse expedita fugit quam aliquam. Autem assumenda'
       }, {
         icon: 'fa-crown',

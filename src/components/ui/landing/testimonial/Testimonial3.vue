@@ -1,7 +1,7 @@
 <template>
   <v-container class="py-4 py-lg-8">
     <v-responsive max-width="1200" class="mx-auto text-center">
-      <h2 class="text-h3 text-lg-h2">Our Customers</h2>
+      <h2 class="text-h3 text-lg-h2 ">Our Customers</h2>
       <div style="width: 80px; height: 4px" class="my-4 secondary mx-auto" />
       <div class="text-h6 text-lg-h5">What our customers are saying...</div>
     </v-responsive>
@@ -21,13 +21,8 @@
           </v-card>
         </v-hover>
         <div class="d-flex align-center mt-3">
-          <div class="mr-2">
-            <v-avatar size="50">
-              <v-img :src="item.image"></v-img>
-            </v-avatar>
-          </div>
           <div>
-            <div class="text-h6">{{ item.name }}</div>
+            <div class="text-h6">-{{ item.name }}</div>
             <div class="text-h7 secondary--text">{{ item.title }}</div>
           </div>
         </div>

@@ -2,38 +2,72 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 Vue.use(Router)
-
-export const routes = [{
+import DefaultLayout from "@/layouts/DefaultLayout";
+import HomePage from "@/pages/HomePage";
+import EventsPage from "@/pages/EventsPage";
+import RemotePage from "@/pages/RemotePage";
+import CastingPage from "@/pages/CastingPage";
+import BookPage from "@/pages/BookPage";
+import PartyPage from "@/pages/PartyPage";
+import ErrorLayout from "@/layouts/ErrorLayout";
+import SimpleLayout from "@/layouts/SimpleLayout";
+import NotFoundPage from "@/pages/error/NotFoundPage"
+import CharactersPage from "@/pages/CharactersPage";
+import AdminPage from "@/pages/AdminPage";
+export const routes = [
+  {
+    path: '/admin',
+    name: 'admin',
+    component: SimpleLayout,
+    children: [{
+      path: '',
+      name: 'admin',
+      component: AdminPage
+    }]
+  },
+  {
   path: '/',
-  component: () => import(/* webpackChunkName: "layout-error" */ '@/layouts/DefaultLayout.vue'),
+  component: DefaultLayout,
   children: [{
     path: '',
     name: 'home',
-    component: () => import(/* webpackChunkName: "error" */ '@/pages/HomePage.vue')
+    component: HomePage
+  },{
+    path: 'events',
+    name: 'events',
+    component: EventsPage
+  },{
+    path: 'remote',
+    name: 'remote',
+    component: RemotePage
+  },{
+    path: 'casting',
+    name: 'casting',
+    component:CastingPage
   },
   {
     path: 'book',
     name: 'book',
-    component: () => import(/* webpackChunkName: "error" */ '@/pages/BookPage.vue')
+    component:BookPage
   },
   {
     path: 'party',
     name: 'party',
-    component: () => import(/* webpackChunkName: "error" */ '@/pages/PartyPage.vue')
+    component:PartyPage
   },{
     path: 'characters',
     name: 'characters',
-    component: () => import(/* webpackChunkName: "error" */ '@/pages/CharactersPage.vue')
+    component: CharactersPage
   }
   ]
 
 }, {
   path: '*',
-  component: () => import(/* webpackChunkName: "layout-error" */ '@/layouts/ErrorLayout.vue'),
+  component:ErrorLayout,
   children: [{
     path: '',
     name: 'error',
-    component: () => import(/* webpackChunkName: "error" */ '@/pages/error/NotFoundPage.vue')
+    component:NotFoundPage
   }]
 }
 ]
