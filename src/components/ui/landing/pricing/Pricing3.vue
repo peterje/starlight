@@ -2,11 +2,11 @@
   <v-container class="py-6">
     <v-responsive max-width="700" class="mx-auto text-center">
       <h2 class="text-h3">Public Appearance Fees</h2>
-      <div class="text-h6 text-lg-h5 mt-3 mb-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus impedit error labore doloremque fugit!</div>
+      <div class="text-h6 text-lg-h5 mt-3 mb-6">Public event appearance requests will receive a personal quote to meet the needs of your event - reach out to start building your princess experience</div>
     </v-responsive>
     <v-card class="d-flex flex-column flex-md-row" outlined elevation="2">
       <div class="flex-grow-1 pa-4">
-        <h4 class="text-h4">Something here</h4>
+        <h4 class="text-h4">Pricing</h4>
         <div class="text-h6 mt-3 font-italic">Pricing is evaluated on a case-to-case basis.</div>
         <v-divider class="my-3"></v-divider>
         <v-row dense class="secondary--text">
@@ -32,13 +32,8 @@
           </v-col>
         </v-row>
       </div>
-      <v-sheet :width="$vuetify.breakpoint.mdAndUp ? '380' : undefined" color="surface" class="pa-4 rounded-r text-center">
-        <div class="d-flex justify-center ml-n3 my-3">
-          <div class="text-h5 font-weight-regular mr-1" style="margin-top: 4px">$</div>
-          <div class="text-h1">275</div>
-        </div>
-        <div class="text-center my-3"><router-link class="secondary--text" to="#">More info</router-link></div>
-        <v-btn x-large block color="primary">Buy Now</v-btn>
+      <v-sheet :width="$vuetify.breakpoint.mdAndUp ? '380' : undefined" color="surface" class="pa-4 rounded-r text-center d-flex align-center">
+        <v-btn x-large block color="primary">Book Today</v-btn>
       </v-sheet>
     </v-card>
   </v-container>

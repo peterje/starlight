@@ -6,7 +6,7 @@
         <h2 class="text-subtitle-1">Fill out this form to request a booking</h2>
       </div>
       <v-row justify="center">
-        <v-col cols="6" class="pb-10" align-self="center">
+        <v-col cols="12" class="pb-10" align-self="center">
           <v-form ref="form" v-model="formValid">
             <v-subtitle>General Info</v-subtitle>
             <v-divider ></v-divider>
@@ -41,7 +41,7 @@
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
                     v-model="date"
-                    label="Choose a Date"
+                    label="Date"
                     prepend-icon="mdi-calendar"
                     readonly
                     :rules="dateRules"
@@ -82,7 +82,7 @@
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
                     v-model="time"
-                    label="Choose a Time"
+                    label="Time"
                     prepend-icon="mdi-clock-time-four-outline"
                     readonly
                     :rules="timeRules"
@@ -127,11 +127,11 @@
               filled
               label="Number of Performers"
             ></v-select>
+            <v-text-field label="Characters Requested" v-model="characters"> </v-text-field>
             <v-textarea shaped outlined label="Special Requests"></v-textarea>
-            <v-text-field label="Promo Code"> </v-text-field>
-            <h1 v-if="selectedItem !== 'Public Event' " class="display-1 my-4">Event estimate: ${{ price }}</h1>
-            <h1 v-else class="display-1 my-4">Request booking for estimate</h1>
-            <v-btn color="surface" x-large @click="submitForm" >Request</v-btn>
+            <v-text-field label="Promo Code" v-model="code"> </v-text-field>
+<!--            <h1 class="display-1 my-4">Request booking for estimate</h1>-->
+            <v-btn color="surface" x-large @click="submit" >Request</v-btn>
             <div class="subtitle-1 font-weight-light">Requesting a booking does not require payment</div>
           </v-form>
           <v-dialog v-model="successModal" width="500">
@@ -162,6 +162,8 @@ export default {
   data()  {
     return {
       // List of images displayed in the carousel
+      characters: '',
+      code: '',
       selectedPerformers: 1,
       selectedItem: 'Princess Party',
       firstName:'',
@@ -225,13 +227,33 @@ export default {
         this.successModal = true
       }
     },
-      submit: function() {
-        const newPostKey = firebase.database().ref().child('messages').push().key;
-        const updates = {}
-        updates['/messages/' + newPostKey ] = {
-          first: this.firstName,
-        };
-        return firebase.database().ref().update(updates);
+      submit: async function() {
+        const isValid = this.$refs.form.validate()
+
+        if (isValid) {
+          this.successModal = true
+        }else{
+          return
+        }
+        const ref = firebase.firestore().collection('bookings')
+        const new_post = {
+          email: this.email,
+          contacted: false,
+          name: this.firstName + " " + this.lastName,
+          date: this.date,
+          time: this.time,
+          characters: this.characters,
+          service: this.selectedItem ,
+          performers: this.selectedPerformers,
+          address: this.address1 + " " +  this.address2 + " " + this.city + ", " +  this.state,
+          archived: false,
+          promo: this.code | 'None'
+        }
+        try{
+          await ref.add(new_post)
+        }catch (e) {
+          console.log(e)
+        }
       }
   }
   // TODO: Beautify the quote price

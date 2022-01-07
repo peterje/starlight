@@ -9,7 +9,7 @@
       </div>
       <div class="w-full w-md-half">
         <v-img
-          src="/images/features/14.jpg"
+          src="/images/partypic.jpg"
           :max-height="$vuetify.breakpoint.mdAndUp ? '600' : '300'"
           alt=""
         ></v-img>

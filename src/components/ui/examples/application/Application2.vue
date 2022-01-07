@@ -1,19 +1,7 @@
 <template>
   <v-layout class="fill-height">
     <!-- Navigation -->
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-      floating
-      clipped
-      :color="$vuetify.breakpoint.lgAndUp ? 'surface': ''"
-      :right="$vuetify.rtl"
-      width="260"
-    >
-      <!-- Navigation menu -->
-      <main-menu :menu="menu" class="mt-2" />
-    </v-navigation-drawer>
-
+    <ApplicationSideBar @changeView="changeView"></ApplicationSideBar>
     <!-- Toolbar -->
     <v-app-bar
       app
@@ -30,47 +18,37 @@
           <v-app-bar-nav-icon class="d-lg-none" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
           <div class="d-flex px-1 align-center">
-            <img src="/images/v-logo-small.png" height="48" alt="logo" class="mr-1">
+            <img src="/images/logo.png" height="60" alt="logo" class="mr-1">
             <div>
               <div class="title font-weight-bold text-uppercase primary--text">{{ config.product.name }}</div>
               <div class="overline grey--text">{{ config.product.version }}</div>
             </div>
           </div>
-
-          <v-spacer></v-spacer>
-
-          <div :class="[$vuetify.rtl ? 'ml-1' : 'mr-1']">
-            <toolbar-notifications />
-          </div>
-
-          <toolbar-user />
         </div>
       </v-card>
     </v-app-bar>
+    <v-content class="mt-10 fill-height text-center">
+      <h1 class="text-h4">{{activeView}}</h1>
+      <v-switch label="Show Archived" @click="doShowArchive"> </v-switch>
 
-    <v-container :fluid="!isContentBoxed" class="pt-3">
+      <div :key="contentKey">
+        <div v-if="activeView === 'Bookings'">
+          <v-divider class="my-2"></v-divider>
+          <UserTable :show-archived="showArchived" />
+        </div>
 
-      <!-- <router-view></router-view> -->
+        <div v-if="activeView === 'Casting'">
+          <v-divider class="my-2"></v-divider>
+          <CastingTable :show-archived="showArchived" />
+        </div>
 
-      <!-- DEMO PURPOSES DEFAULT ROUTER VIEW -->
-      <div class="my-3 fill-height">
-        <h1 class="text-h4">Dashboard</h1>
-        <v-divider class="my-2"></v-divider>
-        <Card5 class="pa-0" />
-        <UserTable />
-        <Card2 class="pa-0" />
+        <div v-if="activeView === 'Messages'">
+          <v-divider class="my-2"></v-divider>
+          <MessagesTable :show-archived="showArchived"/>
+        </div>
+
       </div>
-    </v-container>
-
-    <v-footer app>
-      <div class="overline">
-        Copyright © 2020 <a href="https://indielayer.com" target="_blank">Indielayer</a>, All rights Reserved
-      </div>
-      <v-spacer></v-spacer>
-      <div class="overline">
-        Made with <v-icon small color="pink">mdi-heart</v-icon> by <a href="https://indielayer.com" target="_blank">Indielayer</a>
-      </div>
-    </v-footer>
+    </v-content>
   </v-layout>
 </template>
 
@@ -83,13 +61,19 @@ import menu from '@/components/ui/application/layout/menu'
 import UserTable from '@/components/examples/UserTable'
 import Card2 from '@/components/ui/application/card/Card2'
 import Card5 from '@/components/ui/application/card/Card5'
+import CastingTable from "@/components/examples/CastingTable";
+import MessagesTable from "@/components/examples/MessagesTable";
+import ApplicationSideBar from "@/components/ui/examples/application/ApplicationSideBar";
 
 export default {
   components: {
+    ApplicationSideBar,
     MainMenu,
     ToolbarUser,
     ToolbarNotifications,
     UserTable,
+    CastingTable,
+    MessagesTable,
     Card2,
     Card5
   },
@@ -98,8 +82,22 @@ export default {
       menu,
       config,
       drawer: null,
-      isContentBoxed: false
+      isContentBoxed: false,
+      activeView: 'Bookings',
+      showArchived: false,
+      contentKey: 1
     }
+  },
+  methods:{
+    changeView(view) {
+      console.log("showView", view)
+      this.activeView = view
+    },
+    doShowArchive(){
+      this.showArchived = !this.showArchived;
+      console.log(this.showArchived)
+      this.contentKey*=-1;
+    },
   }
 }
 </script>

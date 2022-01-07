@@ -3,19 +3,24 @@
     <v-navigation-drawer v-model="drawer" app temporary>
       <v-list dense nav>
         <v-subheader class="text-uppercase font-weight-bold">Menu</v-subheader>
-        <v-list-item v-for="(item, index) in menu" :key="index" link>
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+        <v-list-item v-for="(item, index) in menu" :key="index" link v-if="item.title !== 'Services'">
+          <v-list-item-content v-if="item.title !== 'Services'">
+            <router-link :to="item.links[0].to" class="text-decoration-none" >{{item.title}}</router-link>
           </v-list-item-content>
         </v-list-item>
-      </v-list>
-      <template v-slot:append>
-        <div class="pa-2">
-          <v-btn block color="primary">
-            Log In
-          </v-btn>
+        <div v-else>
+          <v-list-item>
+            <v-list-item-content>
+              <router-link to="/party" class="text-decoration-none" >Parties</router-link>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-content>
+              <router-link to="/events" class="text-decoration-none" >Public Events</router-link>
+            </v-list-item-content>
+          </v-list-item>
         </div>
-      </template>
+      </v-list>
     </v-navigation-drawer>
 
     <v-btn

@@ -3,7 +3,7 @@
     <v-sheet class="white elevation-3 text-center px-10 align-center justify-space-around" >
       <div class="pa-6 pa-md-12">
         <h2 class="text-subtitle-1">Interesting in working with us?</h2>
-        <h2 class="text-h3 text-lg-h2">We Are Hiring!</h2>
+        <h2 class="text-h3 text-lg-h2">Join the Cast!</h2>
       </div>
       <v-row justify="center">
         <v-col cols="6" class="pb-10" align-self="center">
@@ -27,20 +27,31 @@
               <v-text-field v-model="shoeSize" required label="Shoe Size" outlined> </v-text-field>
             </div>
 
+            <v-text-field v-model="address1" required label="Address 1"> </v-text-field>
+            <v-text-field v-model="address2" label="Address 2"> </v-text-field>
+            <div class="d-flex justify-space-between mb-4">
+              <v-text-field v-model="city" required label="City"> </v-text-field>
+              <v-spacer/>
+              <v-text-field v-model="state" required label="State"> </v-text-field>
+              <v-spacer/>
+              <v-text-field v-model="zipCode" required label="Postal Code"> </v-text-field>
+            </div>
             <v-divider ></v-divider>
             <v-file-input
+              v-model="resume"
               :rules="fileRules"
               accept="image/pdf"
               placeholder="Upload resume"
               prepend-icon="mdi-file-document"
             ></v-file-input>
             <v-file-input
+              v-model="headshot"
               :rules="fileRules"
               accept="image/png image/jpeg, image/bmp"
               placeholder="Upload headshot"
               prepend-icon="mdi-camera"
             ></v-file-input>
-            <v-btn outlined @click.stop="successModal=true">Submit</v-btn>
+            <v-btn outlined @click="submitForm">Submit</v-btn>
 
           </v-form>
           <v-dialog v-model="successModal" width="500">
@@ -63,6 +74,8 @@
 </template>
 
 <script type="ts">
+import firebase from "firebase";
+
 export default {
   name: 'BookPage',
   components: {
@@ -70,6 +83,10 @@ export default {
   data()  {
     return {
       // List of images displayed in the carousel
+      resume: undefined,
+      headshot: undefined,
+      headshotURL: undefined,
+      resumeURL: undefined,
       selectedPerformers: 1,
       selectedItem: 'Princess Party',
       firstName:'',
@@ -81,8 +98,13 @@ export default {
       dateModal: false,
       timeModal: false,
       time: '',
+      city: '',
+      state: '',
+      zipCode: '',
       modal2: false,
       valid: false,
+      address1: '',
+      address2: '',
       firstname: '',
       items: ['Princess Party', 'Magic Mirror Call', 'Magical Message', 'Public Event' ],
       numPerformers: [1,2,3],
@@ -127,12 +149,39 @@ export default {
 
   },
   methods: {
-    submitForm: function () {
+    submitForm: async function () {
       const isValid = this.$refs.form.validate()
-
       if (isValid) {
         this.successModal = true
+      }else{
+        return
       }
+      const files = firebase.storage().ref('casting').child(`${this.firstName}${this.lastName}`)
+      const ref = firebase.firestore().collection('casting')
+      const resumeTask = files.child('resume').put(this.resume)
+      const headshotTask = files.child('headshot').put(this.headshot)
+      files.child('headshot').getDownloadURL().then(url => {
+        this.headshotURL = url
+        files.child('resume').getDownloadURL().then(url => {
+          this.resumeURL = url
+        }).then(async ()=> {
+          const new_post = {
+            email: this.email,
+            resume: this.resumeURL,
+            headshot : this.headshotURL,
+            contacted: false,
+            name: this.firstName + " " + this.lastName,
+            age:this.age,
+            height: this.height,
+            shoe: this.shoeSize
+          }
+          try{
+            await ref.add(new_post)
+          }catch (e) {
+            console.log(e)
+          }
+        })
+      })
     }
   }
   // TODO: Beautify the quote price

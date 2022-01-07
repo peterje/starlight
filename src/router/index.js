@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 import DefaultLayout from "@/layouts/DefaultLayout";
+import AdminBooking from '@/pages/AdminBooking'
 import HomePage from "@/pages/HomePage";
 import EventsPage from "@/pages/EventsPage";
 import RemotePage from "@/pages/RemotePage";
@@ -14,17 +15,32 @@ import SimpleLayout from "@/layouts/SimpleLayout";
 import NotFoundPage from "@/pages/error/NotFoundPage"
 import CharactersPage from "@/pages/CharactersPage";
 import AdminPage from "@/pages/AdminPage";
+import FaqPage from "@/pages/FaqPage";
+import TermsPage from "@/pages/TermsPage";
+import ContactPage from "@/pages/ContactPage";
+import StoryPage from "@/pages/StoryPage";
+import Application2 from "@/components/ui/examples/application/Application2";
 export const routes = [
   {
     path: '/admin',
     name: 'admin',
-    component: SimpleLayout,
-    children: [{
-      path: '',
-      name: 'admin',
-      component: AdminPage
-    }]
-  },
+    component: Application2,},
+  //   children: [{
+  //     path: '',
+  //     name: 'adminbooking',
+  //     component: AdminBooking
+  //   },
+  //     {
+  //       path: 'casting',
+  //       name: 'admincasting',
+  //       component: AdminBooking
+  //     },
+  //     {
+  //       path: 'messages',
+  //       name: 'adminmessages',
+  //       component: AdminBooking
+  //     }]
+  // },
   {
   path: '/',
   component: DefaultLayout,
@@ -32,6 +48,22 @@ export const routes = [
     path: '',
     name: 'home',
     component: HomePage
+  },{
+    path: 'faq',
+    name: 'faq',
+    component: FaqPage
+  },{
+    path: 'terms',
+    name: 'terms',
+    component: TermsPage
+  },{
+    path: 'contact',
+    name: 'contact',
+    component: ContactPage
+  },{
+    path: 'story',
+    name: 'story',
+    component: StoryPage
   },{
     path: 'events',
     name: 'events',

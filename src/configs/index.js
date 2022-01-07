@@ -4,7 +4,7 @@ import analytics from './analytics'
 
 export default {
   product: {
-    name: 'Starlight Studios',
+    name: 'Starlight Studio',
     version: 'v1.0.1'
   },
   icons,

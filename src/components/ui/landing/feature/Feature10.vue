@@ -20,7 +20,7 @@
                 <v-icon class="text-h2" color="secondary">{{ item.icon }}</v-icon>
               </div>
               <div class="text-h6 mt-3">{{ item.title }}</div>
-              <div class="font-weight-regular mt-2">{{ item.description }}</div>
+<!--              <div class="font-weight-regular mt-2">{{ item.description }}</div>-->
             </v-responsive>
           </v-card>
         </v-col>

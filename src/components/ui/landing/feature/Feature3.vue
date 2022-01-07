@@ -1,26 +1,49 @@
 <template>
-  <v-sheet>
-    <v-container class="py-4 py-lg-8">
+  <v-sheet class="text-center">
+    <h2 class="text-h3 text-lg-h2 pa-2">Our Story</h2>
+    <v-container class="py-4 py-lg-8 text-left">
       <v-row>
         <v-col cols="12" md="4" xl="3">
-          <h2 class="text-h3 text-lg-h2 mt-0 mt-xl-10">Get your startup ready for business</h2>
-          <div class="text-h6 text-lg-h5 mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus impedit error labore doloremque fugit! Dolor fugit molestiae vero quos quisquam nobis, eos debitis magni omnis ea incidunt amet voluptate dignissimos!</div>
-          <div class="mt-4">
-            <v-btn large class="my-1 mr-sm-1 w-full w-sm-auto" color="secondary">Learn more</v-btn>
+          <div style="width: 80px; height: 4px" class="mb-5 secondary" />
+          <div class="text-h6 text-lg-h5 mt-5">Welcome to Starlight Studio, and thank you for getting to know who we are! </div>
+          <div class="text-h6 text-lg-h5 mt-5">
+            My passion behind this project is to spark a joy for the magic of performing arts by creating memorable character experiences for children and families. I want this to be an outlet for imagination and opportunity for creative collaboration in the hudson valley community.
           </div>
         </v-col>
         <v-col cols="12" md="4" offset-xl="1">
           <v-img
             class="rounded-lg elevation-6"
-            src="/images/features/13.jpg"
+            src="/images/Headshot.png"
             :max-height="$vuetify.breakpoint.mdAndUp ? '700' : '300'"
             :min-height="$vuetify.breakpoint.mdAndUp ? '500' : '300'"
           ></v-img>
         </v-col>
         <v-col cols="12" md="4" xl="3" offset-xl="1">
-          <div class="text-h6 text-lg-h5 mt-3 mt-xl-10">
+          <div class="text-h6 text-lg-h5 mt-3">
             <div style="width: 80px; height: 4px" class="mb-5 secondary" />
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore quas eum libero non, ipsa quis illo quisquam corporis tempore dolore vel magnam fugiat veniam amet est aliquid ipsam, accusamus itaque quaerat soluta cumque quia molestiae debitis. Earum praesentium placeat explicabo dicta, aliquam dolorem ut, pariatur velit quam nihil totam libero.
+            Born and raised in Seattle, Washington, as a child I was fortunate to be surrounded by an abundance of performing arts experiences for children and young audiences. As a young adult, this allowed me opportunities for on-stage experience that set me on a path of passion for the performing arts.
+          </div>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12" md="4" xl="3">
+          <div style="width: 80px; height: 4px" class="mb-5 secondary" />
+          <div class="text-h6 text-lg-h5 mt-5">
+            Moving to New Paltz, New York I fell in love with the community, and I have been serving the children and families of the hudson valley as a professional in early childhood education, in the classroom and now in leadership as a Program Director.
+          </div>
+        </v-col>
+        <v-col cols="12" md="4" offset-xl="1">
+          <v-img
+            class="rounded-lg elevation-6"
+            src="/images/story.jfif"
+            :max-height="$vuetify.breakpoint.mdAndUp ? '700' : '300'"
+            :min-height="$vuetify.breakpoint.mdAndUp ? '500' : '300'"
+          ></v-img>
+        </v-col>
+        <v-col cols="12" md="4" xl="3" offset-xl="1">
+          <div class="text-h6 text-lg-h5 mt-3">
+            <div style="width: 80px; height: 4px" class="mb-5 secondary" />
+            My mission is to blend my love for performing arts, and foundations of early childhood education to create enriching experiences for the children, families, and artists of the hudson valley.
           </div>
         </v-col>
       </v-row>
